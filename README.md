@@ -16,3 +16,22 @@ in second case you would call:
     dotnet run myPackage.nuspec /package/metadata/version 2.0.0
 
 The Result is in both cases the output of the manipuled File
+
+## Example:
+
+Input XML:
+```
+<TestXML>
+  <myValue>Hello</myValue>
+</TestXML>
+```
+Command:
+
+    dotnet run /TestXML/myValue World < example.xml
+
+Output:
+```
+<TestXML>
+  <myValue>World</myValue>
+</TestXML>
+```
