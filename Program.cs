@@ -5,20 +5,20 @@ using System.Xml.XPath;
 
 namespace UpdateXml
 {
-    class Program
+    internal class Program
     {
-        static int Main(string[] args)
+        private static int Main(string[] args)
         {
-            String pipedText = "";
+            string pipedText = "";
             bool isKeyAvailable;
 
             try
             {
-                isKeyAvailable = System.Console.KeyAvailable;
+                isKeyAvailable = Console.KeyAvailable;
             }
-            catch (InvalidOperationException expected)
+            catch (InvalidOperationException)
             {
-                pipedText = System.Console.In.ReadToEnd();
+                pipedText = Console.In.ReadToEnd();
             }
 
             string xpath, newValue;
@@ -26,17 +26,18 @@ namespace UpdateXml
             XmlDocument document = new XmlDocument();
             if (string.IsNullOrWhiteSpace(pipedText))
             {
-
                 if (args.Length != 3)
                 {
                     HelpText();
                     return 0;
                 }
+
                 if (!File.Exists(args[0]))
                 {
                     Console.WriteLine($"Datei {args[0]} existiert nicht");
                     return 1;
                 }
+
                 document.Load(args[0]);
                 xpath = args[1];
                 newValue = args[2];
